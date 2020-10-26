@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Producte</title>
+
+</head>
+<body>
+    <table>
+        <thead>
+            <th>Name</th>
+            <th>Edit</th>
+        </thead>
+        <tbody>
+            <tr th:each="prd: ${allProducts}">
+                <td th:text="${prd.productName}"></td>
+                <td><a th:href="@{/product/edit/{id}(id = ${prd.productId})}" th:text="#{productlist.edit}"></a> </td>
+            </tr>
+        </tbody>
+    </table>
+    <br/>
+    <div th:unless="${not #lists.isEmpty(allProducts)}" th:text="#{productlist.emptymessage}">
+        Hier gibt es noch keine Produkte zu sehen
+    </div>
+    <did><a href="add" th:text="#{productlist.add}">Weiteres Produkt hinzufügen</a></did>
+    <div><a href="../home.html" th:text="#{productlist.home}">Zurück zur Übersicht</a></div>
+</body>
+</html>
